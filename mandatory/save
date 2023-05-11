@@ -1,0 +1,28 @@
+SRC = $(wildcard *.c)
+
+OBJ = $(SRC:.c=.o)
+
+NAME = fract-ol.a
+
+FLAGS = -Wall -Wextra -Werror
+
+all: $(NAME)
+
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+(NAME):
+	cc $(FLAGS) -c $(SRCS)
+	ar rcs $(NAME) $(OBJS)
+
+clean:
+	rm *.o $(SRC)
+fclean:
+	rm -f *.o
+
+re: fclean $(SRC)
+
+.PHONY: all fclean clean
