@@ -1,8 +1,0 @@
-#Object
-*.o
-#Exec
-*.out
-#Visual Studio Code
-*.vscode
-#debugger
-*.dSYM
