@@ -1,2 +1,2 @@
 src/*.o
-*.DS_S
+.DS_Store
