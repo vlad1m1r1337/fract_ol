@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:27:02 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/19 15:40:11 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:03:26 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ void	initial_condition_Mandelbrot(t_mlx *mlx);
 void	draw_mandelbrot_set(t_mlx *mlx);
 
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
+
+int mouse_hook(int keycode, int xx, int yy, t_mlx *mlx);
 
 #endif

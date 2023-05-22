@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 17:45:57 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/19 20:31:27 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:22:17 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@ int	mandelbrot(double cr, double ci, t_mlx *mlx)
 	double i = 0;
 	int	iter = 0;
 	double	r_temp;
+	double ri[2];
+	ri[0] = 0;
+	ri[1] = 0;
 	
-	while (pow(r, 2) + pow(i, 2) < 4 && iter < mlx -> max_iter)
+	while (ri[0] + ri[1] < 4 && iter < mlx -> max_iter)
 	{
-		r_temp = pow(r, 2) - pow(i, 2) + cr;
+		r_temp = ri[0] - ri[1] + cr;
 		i = 2 * r * i + ci;
 		r = r_temp;
+		ri[0] = r * r;
+		ri[1] = i * i;
 		iter++;
 	}
 	return (iter * 771 + 10000);

@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:46:39 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/18 17:47:49 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/22 11:45:40 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	warning_message(void)
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color)
 {
 	char	*dst;
-	
 	dst = mlx -> data + (y * mlx -> size_l + x * (mlx -> bpp / 8));
 	*(unsigned int*)dst = color;
 }

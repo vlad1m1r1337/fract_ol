@@ -6,19 +6,19 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:21:23 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/19 20:58:10 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:59:33 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fract_ol.h"
 
 void	ic_m(t_mlx *mlx)
-{
-	mlx -> x_min = -1;
+{ 
+	mlx -> x_min = -2;
 	mlx -> x_max = 1;
-	mlx -> y_min = -1;
-	mlx -> y_max = 1;
-	mlx -> max_iter = 20;
+	mlx -> y_min = -1.5;
+	mlx -> y_max = 1.5;
+	mlx -> max_iter = 50;
 	mlx -> zoom = 1.0;
 	mlx -> center_x = 0;
 	mlx -> center_y = 0;
@@ -50,7 +50,9 @@ int main(int argc ,char **argv)
 	else
 		warning_message();
 	mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr, mlx -> img_ptr, 0, 0);
-	hooks(mlx);
+	mlx_key_hook(mlx -> win_ptr, key_hook, mlx);
+	mlx_hook(mlx -> win_ptr, 17, 1L << 2, ex, mlx);
+	mlx_hook(mlx->win_ptr, 4, 1, mouse_hook, mlx);
 	mlx_loop(mlx -> mlx_ptr);
 	return(0);
 }
