@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:27:02 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/22 14:03:26 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:05:20 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_mlx
 	double	y_min;
 	double	y_max;
 	int		max_iter;
+	double mouse_x;
+	double mouse_y;
 }			t_mlx;
 
 
@@ -50,6 +52,8 @@ int 	ft_strcmp(char *s1, char *s2);
 int 	ex(void);
 
 void	warning_message(void);
+
+void	warning_zoom(void);
 
 int		key_hook(int keycode, t_mlx *mlx);
 

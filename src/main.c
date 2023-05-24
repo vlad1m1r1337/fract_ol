@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:21:23 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/22 16:59:33 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:48:54 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 void	ic_m(t_mlx *mlx)
 { 
 	mlx -> x_min = -2;
-	mlx -> x_max = 1;
-	mlx -> y_min = -1.5;
-	mlx -> y_max = 1.5;
+	mlx -> x_max = 2;
+	mlx -> y_min = -2;
+	mlx -> y_max = 2;
 	mlx -> max_iter = 50;
 	mlx -> zoom = 1.0;
 	mlx -> center_x = 0;
 	mlx -> center_y = 0;
 	mlx -> x = 0;
 	mlx -> y = 0;
+	mlx -> mouse_x = 0;
+	mlx -> mouse_y = 0;
 }
 
 void	window_creating(t_mlx *mlx)
@@ -49,7 +51,9 @@ int main(int argc ,char **argv)
 	}
 	else
 		warning_message();
+	my_mlx_pixel_put(mlx, 350, 350, 1000);
 	mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr, mlx -> img_ptr, 0, 0);
+	
 	mlx_key_hook(mlx -> win_ptr, key_hook, mlx);
 	mlx_hook(mlx -> win_ptr, 17, 1L << 2, ex, mlx);
 	mlx_hook(mlx->win_ptr, 4, 1, mouse_hook, mlx);

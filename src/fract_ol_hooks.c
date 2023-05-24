@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:28:20 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/22 17:27:47 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:36:53 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,49 +17,53 @@ int	key_hook(int keycode, t_mlx *mlx)
 	(void)mlx;
 	if (keycode == 53)
 		exit(0);
+	else if (keycode == 34)
+	{
+		if (mlx -> max_iter < 2000)
+			mlx -> max_iter = mlx -> max_iter * 1.1;
+		else
+			return 0;
+		draw_mandelbrot_set(mlx);
+		mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr, mlx -> img_ptr, 0, 0);
+	}
+	else if (keycode == 2)
+	{
+		if (mlx -> max_iter > 10)
+			mlx -> max_iter = mlx -> max_iter / 1.1;
+		else
+		{
+			write(1, "To small zoom\n", 14);	
+			return 0;
+		}
+		draw_mandelbrot_set(mlx);
+		mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr, mlx -> img_ptr, 0, 0);
+	}
 	return (0);
 }
 
-int mouse_hook(int keycode, int xx, int yy, t_mlx *mlx)
+int mouse_hook(int keycode, int x, int y, t_mlx *mlx)
 {
-	double x = xx - 350;
-	double y = yy - 350;
+	mlx -> mouse_x = (double)x;
+	mlx -> mouse_y = (double)y;
 	
-	if (keycode == 4)
+	if (keycode == 4)//in
 	{
-		//mlx -> down = 1;
-		mlx -> x_min = x / HW * 4 + ((mlx -> x_min - x / HW * 4) * 0.9);
-		mlx -> y_min = y / HW * 4 + ((mlx -> y_min - y / HW * 4) * 0.9);
-		mlx -> y_max = y / HW * 4 + ((mlx -> y_max - y / HW * 4) * 0.9);
-		mlx -> x_max = x / HW * 4 + ((mlx -> x_max - x / HW * 4) * 0.9);
-		draw_mandelbrot_set(mlx);
-		mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr, mlx -> img_ptr, 0, 0);
+		mlx -> x_min = mlx -> x_min * 0.95;
+		mlx -> x_max = mlx -> x_max * 0.95;
+		mlx -> y_min = mlx -> x_min * 0.95;
+		mlx -> y_max = mlx -> x_max * 0.95;	
 	}
-	else if (keycode == 5)
+	else if (keycode == 5)// out
 	{
-		//mlx -> up = 1;
-		mlx -> x_min = x / HW * 4 + ((mlx -> x_min - x / HW * 4) + (mlx -> x_min - x / HW * 4) * 0.1);
-		mlx -> y_min = y / HW * 4 + ((mlx -> y_min - y / HW * 4) + (mlx -> y_min - y / HW * 4) * 0.1);
-		mlx -> y_max = y / HW * 4 + ((mlx -> y_max - y / HW * 4) + (mlx -> y_max - y / HW * 4) * 0.1);
-		mlx -> x_max = x / HW * 4 + ((mlx -> x_max - x / HW * 4) + (mlx -> x_max - x / HW * 4) * 0.1);
-		draw_mandelbrot_set(mlx);
-		mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr, mlx -> img_ptr, 0, 0);
+		mlx -> x_min = mlx -> x_min / 0.95;
+		mlx -> x_max = mlx -> x_max / 0.95;
+		mlx -> y_min = mlx -> x_min / 0.95;
+		mlx -> y_max = mlx -> x_max / 0.95;
 	}
+	draw_mandelbrot_set(mlx);
+	mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr, mlx -> img_ptr, 0, 0);
 	return (0);
 }
-
-// mouse_hook_draw(t_mlx *mlx)
-// {
-// 	if (mlx -> down = 1)
-// 	{
-// 		mlx -> x_min = x / HW + ((mlx -> x_min - x / HW) * 0.9);
-// 		mlx -> y_min = y / HW + ((mlx -> y_min - y / HW) * 0.9);
-// 		mlx -> y_max = y / HW + ((mlx -> y_max - y / HW) * 0.9);
-// 		mlx -> x_max = x / HW + ((mlx -> x_max - x / HW) * 0.9);
-// 		draw_mandelbrot_set(mlx);
-// 		mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr, mlx -> img_ptr, 0, 0);
-// 	}
-// }
 
 void	hooks(t_mlx *mlx)
 {

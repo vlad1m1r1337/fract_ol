@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 17:45:57 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/22 16:22:17 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:51:25 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	mandelbrot(double cr, double ci, t_mlx *mlx)
 {
+	if (ci || cr)
+		;
 	double r = 0;
 	double i = 0;
 	int	iter = 0;
@@ -50,8 +52,8 @@ void	draw_mandelbrot_set(t_mlx *mlx)
 		mlx -> x = 0;
 		while(mlx -> x < HW)
 		{
-			cr = mlx -> x_min + mlx -> x * x_step;
-			ci = mlx -> y_min + mlx -> y * y_step;
+			cr = mlx -> x_min + mlx -> mouse_x / HW + mlx -> x * x_step;
+			ci = mlx -> y_min + mlx -> mouse_y / HW + mlx -> y * y_step;
 			iter = mandelbrot(cr, ci, mlx);
 			my_mlx_pixel_put(mlx, mlx -> x, mlx -> y, iter);
 			(mlx -> x)++;

@@ -1,14 +1,18 @@
 NAME = fract_ol
 
-SRC = $(wildcard src/*.c)
+SRC = src/fract_ol_hooks.c\
+src/fract_ol_Mandelbrot.c\
+src/fract_ol_utils.c\
+src/main.c\
 
-HEADER = $(wildcard include/*.h)
+HEADER = include/fract_ol.h
 
 OBJ = $(SRC:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 all: $(NAME)
+
 $(NAME): $(OBJ)
 	@cc $(FLAGS) $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
