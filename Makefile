@@ -1,7 +1,7 @@
 NAME = fract_ol
 
 SRC = src/fract_ol_hooks.c\
-src/fract_ol_Mandelbrot.c\
+src/fract_ol_drawing.c\
 src/fract_ol_utils.c\
 src/main.c\
 

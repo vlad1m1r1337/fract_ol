@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:27:02 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/24 14:05:20 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:26:34 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ typedef struct s_mlx
 	int		max_iter;
 	double mouse_x;
 	double mouse_y;
+	char	*name;
+	double	julia_r;
+	double	julia_i;
 }			t_mlx;
 
 
@@ -61,12 +64,14 @@ void	hooks(t_mlx *mlx);
 
 int		mandelbrot(double cr, double ci, t_mlx *mlx);
 
-void	initial_condition_Mandelbrot(t_mlx *mlx);
+void	initial_parametrs(t_mlx *mlx, char *fr_name, char *j_r, char *j_i);
 
-void	draw_mandelbrot_set(t_mlx *mlx);
+void	drawing_mandelbrot(t_mlx *mlx);
+
+void	drawing_julia(t_mlx *mlx);
 
 void	my_mlx_pixel_put(t_mlx *mlx, int x, int y, int color);
 
-int mouse_hook(int keycode, int xx, int yy, t_mlx *mlx);
+int 	mouse_hook(int keycode, int xx, int yy, t_mlx *mlx);
 
 #endif

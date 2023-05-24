@@ -6,14 +6,20 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:21:23 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/24 14:48:54 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:29:22 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fract_ol.h"
 
-void	ic_m(t_mlx *mlx)
-{ 
+void	initial_parametrs(t_mlx *mlx, char *fr_name, char *j_r, char *j_i)
+{
+	if (ft_strcmp("Julia", fr_name) == 0)
+	{
+		mlx -> julia_r = atof(j_r);
+		mlx -> julia_i = atof(j_i);
+	}
+	mlx -> name = fr_name;
 	mlx -> x_min = -2;
 	mlx -> x_max = 2;
 	mlx -> y_min = -2;
@@ -44,16 +50,18 @@ int main(int argc ,char **argv)
 	if (argc == 1)
 		warning_message();
 	window_creating(mlx);
+	initial_parametrs(mlx, argv[1], argv[2], argv[3]);
 	if (ft_strcmp("Mandelbrot", argv[1]) == 0)
 	{
-		ic_m(mlx);
-		draw_mandelbrot_set(mlx);
+		drawing_mandelbrot(mlx);
+	}
+	else if (ft_strcmp("Julia", argv[1]) == 0)
+	{
+		drawing_julia(mlx);
 	}
 	else
 		warning_message();
-	my_mlx_pixel_put(mlx, 350, 350, 1000);
 	mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr, mlx -> img_ptr, 0, 0);
-	
 	mlx_key_hook(mlx -> win_ptr, key_hook, mlx);
 	mlx_hook(mlx -> win_ptr, 17, 1L << 2, ex, mlx);
 	mlx_hook(mlx->win_ptr, 4, 1, mouse_hook, mlx);
