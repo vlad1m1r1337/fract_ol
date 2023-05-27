@@ -6,19 +6,22 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 17:45:57 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/24 21:09:09 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:44:33 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fract_ol.h"
 
-int		mandelbrot(double r, double i, t_mlx *mlx)
+int	mandelbrot(double r, double i, t_mlx *mlx)
 {
-	int	iter = 0;
+	int		iter;
 	double	r_temp;
-	double start_r = r;
-	double start_i = i;
-	
+	double	start_r;
+	double	start_i;
+
+	iter = 0;
+	start_r = r;
+	start_i = i;
 	while (r * r + i * i < 4 && iter < mlx -> max_iter)
 	{
 		r_temp = r * r - i * i + start_r;
@@ -29,11 +32,12 @@ int		mandelbrot(double r, double i, t_mlx *mlx)
 	return (iter * 371 + 10000);
 }
 
-int		julia(double r, double i, t_mlx *mlx)
+int	julia(double r, double i, t_mlx *mlx)
 {
-	int	iter = 0;
+	int		iter;
 	double	r_temp;
-	
+
+	iter = 0;
 	while (r * r + i * i < 4 && iter < mlx -> max_iter)
 	{
 		r_temp = r * r - i * i + mlx -> julia_r;
@@ -46,19 +50,19 @@ int		julia(double r, double i, t_mlx *mlx)
 
 void	drawing_mandelbrot(t_mlx *mlx)
 {
-	double cr;
-	double ci;
+	double	cr;
+	double	ci;
 	double	x_step;
 	double	y_step;
-    int iter;
-    
-    x_step = ((mlx -> x_max - mlx -> x_min) / HW);
-    y_step = ((mlx -> y_max - mlx -> y_min) / HW);
+	int		iter;
+
+	x_step = ((mlx -> x_max - mlx -> x_min) / HW);
+	y_step = ((mlx -> y_max - mlx -> y_min) / HW);
 	mlx -> y = 0;
-	while(mlx -> y < HW)
+	while (mlx -> y < HW)
 	{
 		mlx -> x = 0;
-		while(mlx -> x < HW)
+		while (mlx -> x < HW)
 		{
 			cr = mlx -> x_min + mlx -> x * x_step;
 			ci = mlx -> y_min + mlx -> y * y_step;
@@ -72,19 +76,19 @@ void	drawing_mandelbrot(t_mlx *mlx)
 
 void	drawing_julia(t_mlx *mlx)
 {
-	double cr;
-	double ci;
+	double	cr;
+	double	ci;
 	double	x_step;
 	double	y_step;
-    int iter;
-    
-    x_step = ((mlx -> x_max - mlx -> x_min) / HW);
-    y_step = ((mlx -> y_max - mlx -> y_min) / HW);
+	int		iter;
+
+	x_step = ((mlx -> x_max - mlx -> x_min) / HW);
+	y_step = ((mlx -> y_max - mlx -> y_min) / HW);
 	mlx -> y = 0;
-	while(mlx -> y < HW)
+	while (mlx -> y < HW)
 	{
 		mlx -> x = 0;
-		while(mlx -> x < HW)
+		while (mlx -> x < HW)
 		{
 			cr = mlx -> x_min + mlx -> x * x_step;
 			ci = mlx -> y_min + mlx -> y * y_step;

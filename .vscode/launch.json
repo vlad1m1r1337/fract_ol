@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "Debug",
 			"program": "${workspaceFolder}/fract_ol",
-			"args": ["Julia"],
+			"args": ["Julia", "-0.4", "0.6"],
 			"cwd": "${workspaceFolder}"
 		}
 	]
