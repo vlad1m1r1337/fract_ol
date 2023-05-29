@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:21:23 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/27 21:33:31 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:52:52 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	initial_parametrs(t_mlx *mlx, char *fr_name)
 	mlx -> y_min = -2;
 	mlx -> y_max = 2;
 	mlx -> max_iter = 50;
-	mlx -> zoom = 1.0;
+	mlx -> wasd = 1.0;
 	mlx -> center_x = 0;
 	mlx -> center_y = 0;
 	mlx -> x = 0;
@@ -40,13 +40,14 @@ void	window_creating(t_mlx *mlx)
 			&mlx -> size_l, &mlx -> endian);
 }
 
-int	render_check(t_mlx *mlx)
+int	render_check(t_mlx *mlx, int argc, char **argv)
 {
 	if (mlx -> win_ptr != NULL)
 	{
 		if (ft_strcmp("Mandelbrot", mlx -> name) == 0)
 			drawing_mandelbrot(mlx);
-		else if (ft_strcmp("Julia", mlx -> name) == 0)
+		else if (ft_strcmp("Julia", mlx -> name) == 0
+			&& julia_parametres_check(mlx, argc, argv))
 			drawing_julia(mlx);
 		mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr,
 			mlx -> img_ptr, 0, 0);
@@ -80,24 +81,14 @@ int	main(int argc, char **argv)
 
 	mlx = malloc(sizeof(t_mlx));
 	if (argc == 1)
+	{
 		warning_message();
+	}
 	window_creating(mlx);
 	initial_parametrs(mlx, argv[1]);
-	if (ft_strcmp("Mandelbrot", argv[1]) == 0)
-	{
-		drawing_mandelbrot(mlx);
-	}
-	else if (ft_strcmp("Julia", argv[1]) == 0
-		&& julia_parametres_check(mlx, argc, argv))
-	{
-		drawing_julia(mlx);
-	}
-	else
-		warning_message();
-	mlx_key_hook(mlx -> win_ptr, key_hook, mlx);
-	mlx_hook(mlx -> win_ptr, 17, 1L << 2, ex, mlx);
-	mlx_hook(mlx -> win_ptr, 4, 1, mouse_hook, mlx);
+	hooks(mlx);
 	mlx_loop_hook(mlx -> mlx_ptr, &render_check, mlx);
 	mlx_loop(mlx -> mlx_ptr);
 	return (0);
 }
+

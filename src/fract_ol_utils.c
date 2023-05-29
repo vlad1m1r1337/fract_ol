@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:46:39 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/27 19:11:23 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:19:18 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,29 @@ double	my_atof(char *str)
 		return (num_int + num_fract);
 	else
 		return (num_int - num_fract);
+}
+
+int	wasd(int keycode, t_mlx *mlx)
+{
+	if (keycode == 1)
+	{
+		mlx -> y_max = (mlx -> y_max + mlx -> wasd);
+		mlx -> y_min = (mlx -> y_min + mlx -> wasd);
+	}
+	if (keycode == 13)
+	{
+		mlx -> y_max = (mlx -> y_max - mlx -> wasd);
+		mlx -> y_min = (mlx -> y_min - mlx -> wasd);
+	}
+	if (keycode == 2)
+	{
+		mlx -> x_max = (mlx -> x_max + mlx -> wasd);
+		mlx -> x_min = (mlx -> x_min + mlx -> wasd);
+	}
+	if (keycode == 0)
+	{
+		mlx -> x_max = (mlx -> x_max - mlx -> wasd);
+		mlx -> x_min = (mlx -> x_min - mlx -> wasd);
+	}
+	return (0);
 }

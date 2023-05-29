@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:27:02 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/27 21:32:01 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:51:31 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_mlx
 	int		size_l;
 	double	center_x;
 	double	center_y;
-	double	zoom;
+	double	wasd;
 	double	x_min;
 	double	x_max;
 	double	y_min;
@@ -76,13 +76,20 @@ double	my_atof(char *str);
 
 int		mouse_hook(int keycode, int xx, int yy, t_mlx *mlx);
 
-void	ft_zoom_in(t_mlx *mlx);
+void	zoom_out(t_mlx *mlx);
 
-void	ft_zoom_out(t_mlx *mlx);
+void	zoom_in(t_mlx *mlx);
 
 void	digit_checker(char **arg);
 
 void	dot_checker(char *arg1, char *arg2);
 
 void	for_cleverest(void);
+
+void	hooks(t_mlx *mlx);
+
+int		wasd(int keycode, t_mlx *mlx);
+
+int	julia_parametres_check(t_mlx *mlx, int argc, char **argv);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 17:45:57 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/27 18:44:33 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/29 12:36:58 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,3 +99,5 @@ void	drawing_julia(t_mlx *mlx)
 		(mlx -> y)++;
 	}
 }
+
+//Julia set. Interesting parametres:0.285, 0.01;0.285, 0;−0.8, 0.156; 

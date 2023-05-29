@@ -6,7 +6,7 @@
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:28:20 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/27 18:45:37 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:19:15 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,9 @@ int	key_hook(int keycode, t_mlx *mlx)
 		exit(0);
 	else if (keycode == 34)
 	{
-		if (mlx -> max_iter < 2000)
-			mlx -> max_iter = mlx -> max_iter * 1.1;
-		else
-			return (0);
-		mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr,
-			mlx -> img_ptr, 0, 0);
+		mlx -> max_iter = mlx -> max_iter * 1.1;
 	}
-	else if (keycode == 2)
+	else if (keycode == 40)
 	{
 		if (mlx -> max_iter > 10)
 			mlx -> max_iter = mlx -> max_iter / 1.1;
@@ -36,6 +31,7 @@ int	key_hook(int keycode, t_mlx *mlx)
 			return (0);
 		}
 	}
+	wasd(keycode, mlx);
 	return (0);
 }
 
@@ -45,16 +41,18 @@ int	mouse_hook(int keycode, int x, int y, t_mlx *mlx)
 	mlx -> mouse_y_norm = (double)y / (double)HW;
 	if (keycode == 4)
 	{
-		ft_zoom_in(mlx);
+		mlx -> wasd /= 1.1;
+		zoom_in(mlx);
 	}
 	else if (keycode == 5)
 	{
-		ft_zoom_out(mlx);
+		mlx -> wasd *= 1.1;
+		zoom_out(mlx);
 	}
 	return (0);
 }
 
-void	ft_zoom_out(t_mlx *mlx)
+void	zoom_out(t_mlx *mlx)
 {
 	double	z;
 
@@ -68,7 +66,7 @@ void	ft_zoom_out(t_mlx *mlx)
 	mlx -> y_min -= z;
 }
 
-void	ft_zoom_in(t_mlx *mlx)
+void	zoom_in(t_mlx *mlx)
 {
 	double	z;
 
@@ -81,3 +79,13 @@ void	ft_zoom_in(t_mlx *mlx)
 		* (1 - mlx -> mouse_y_norm) * 0.1;
 	mlx -> y_min += z;
 }
+
+void	hooks(t_mlx *mlx)
+{
+	mlx_key_hook(mlx -> win_ptr, wasd, mlx);
+	mlx_key_hook(mlx -> win_ptr, key_hook, mlx);
+	mlx_hook(mlx -> win_ptr, 17, 1L << 2, ex, mlx);
+	mlx_hook(mlx -> win_ptr, 4, 1, mouse_hook, mlx);
+}
+
+
