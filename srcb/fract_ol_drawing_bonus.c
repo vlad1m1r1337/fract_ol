@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol_drawing.c                                 :+:      :+:    :+:   */
+/*   fract_ol_drawing_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 17:45:57 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/30 17:52:23 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:09:18 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fract_ol.h"
+#include "../include/fract_ol_bonus.h"
 
 int	mandelbrot(double r, double i, t_mlx *mlx)
 {
@@ -99,4 +99,5 @@ void	drawing_julia(t_mlx *mlx)
 		(mlx -> y)++;
 	}
 }
+
 //Julia set. Interesting parametres:0.285 0.01;0.285, 0;−0.8 0.156; 

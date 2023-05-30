@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol_utils.c                                   :+:      :+:    :+:   */
+/*   fract_ol_utils_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:46:39 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/30 17:00:50 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:09:13 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fract_ol.h"
+#include "../include/fract_ol_bonus.h"
 
 int	ft_strcmp(char *s1, char *s2)
 {

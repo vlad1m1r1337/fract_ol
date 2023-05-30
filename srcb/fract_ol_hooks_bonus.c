@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol_hooks.c                                   :+:      :+:    :+:   */
+/*   fract_ol_hooks_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:28:20 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/30 17:53:53 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:51:25 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fract_ol.h"
+#include "../include/fract_ol_bonus.h"
 
 int	key_hook(int keycode, t_mlx *mlx)
 {
@@ -68,16 +68,16 @@ void	zoom_out(t_mlx *mlx)
 
 void	zoom_in(t_mlx *mlx)
 {
-	double	z;
+	double	temp;
 
-	z = (mlx -> x_max - mlx -> x_min) * mlx -> mouse_x_norm * 0.1;
+	temp = (mlx -> x_max - mlx -> x_min) * mlx -> mouse_x_norm * 0.1;
 	mlx -> x_max -= (mlx -> x_max - mlx -> x_min)
 		* (1 - mlx -> mouse_x_norm) * 0.1;
-	mlx -> x_min += z;
-	z = (mlx -> y_max - mlx -> y_min) * mlx -> mouse_y_norm * 0.1;
+	mlx -> x_min += temp;
+	temp = (mlx -> y_max - mlx -> y_min) * mlx -> mouse_y_norm * 0.1;
 	mlx -> y_max -= (mlx -> y_max - mlx -> y_min)
 		* (1 - mlx -> mouse_y_norm) * 0.1;
-	mlx -> y_min += z;
+	mlx -> y_min += temp;
 }
 
 void	hooks(t_mlx *mlx)

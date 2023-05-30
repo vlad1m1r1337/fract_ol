@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol.h                                         :+:      :+:    :+:   */
+/*   fract_ol_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 19:27:02 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/30 18:14:22 by vgribkov         ###   ########.fr       */
+/*   Created: 2023/05/30 17:57:55 by vgribkov          #+#    #+#             */
+/*   Updated: 2023/05/30 18:27:11 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACT_OL_H
-# define FRACT_OL_H
+#ifndef FRACT_OL_BONUS_H
+# define FRACT_OL_BONUS_H
 # define HW 600
 
 # include <stdlib.h>
@@ -87,5 +87,15 @@ void	dot_checker(char *arg1, char *arg2);
 void	hooks(t_mlx *mlx);
 
 int		wasd(int keycode, t_mlx *mlx);
+
+int		julia_parametres_check(t_mlx *mlx, int argc, char **argv);
+
+void	drawing_mandelbrot(t_mlx *mlx);
+
+int		alien(double r, double i, t_mlx *mlx);
+
+void	drawing_mandelbrot(t_mlx *mlx);
+
+void	drawing_alien(t_mlx *mlx);
 
 #endif

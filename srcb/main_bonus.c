@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:21:23 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/30 18:58:52 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:56:18 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fract_ol.h"
+#include "../include/fract_ol_bonus.h"
 
 void	initial_parametrs(t_mlx *mlx, char *fr_name)
 {
@@ -48,6 +48,8 @@ int	render_check(t_mlx *mlx)
 			drawing_mandelbrot(mlx);
 		else if (ft_strcmp("Julia", mlx -> name) == 0)
 			drawing_julia(mlx);
+		else if (ft_strcmp("alien", mlx -> name) == 0)
+			drawing_alien(mlx);
 		else
 			warning_message();
 		mlx_put_image_to_window(mlx -> mlx_ptr, mlx -> win_ptr,

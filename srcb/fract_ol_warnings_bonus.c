@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fract_ol_warnings.c                                :+:      :+:    :+:   */
+/*   fract_ol_warnings_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgribkov <vgribkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 19:11:13 by vgribkov          #+#    #+#             */
-/*   Updated: 2023/05/30 17:06:46 by vgribkov         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:52:16 by vgribkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fract_ol.h"
+#include "../include/fract_ol_bonus.h"
 
 void	warning_message(void)
 {
 	write(1, "Write name of fractal please\n", 29);
+	system("leaks fract_ol");
 	exit(0);
 }
 
 void	bad_parameters(void)
 {
 	write(1, "Write correct Julia parameters\n", 31);
+	system("leaks fract_ol");
 	exit(0);
 }
 
